@@ -5,7 +5,6 @@ import threading
 import sys
 from queue import Queue
 
-#Get transmition time of frames from user input.
 Tfr = float(input("Please enter Tfr(seconds)\nEnter 0 for default 10 miliseconds: "))
 if Tfr == 0.0:
     Tfr = 0.01
@@ -16,12 +15,10 @@ transmissions = 0
 failedFrames = 0
 channelBusy = False
 lock = threading.Lock()
-#Threads will communicate with each other using this queue
+
 q = Queue()
 semaphore = threading.Semaphore(11)
 
-#Main part of programm. It acts like a ALOHA oriented node.
-#Each node(thread) will use this function.
 def runALOHAnode():
     global Tfr
     global transmissions
@@ -31,11 +28,8 @@ def runALOHAnode():
     global q
 
     while True:
-        #Generate a random exponential variable with lambda=1/2 in miliseconds.
-        #lambda=2 in poison means that lambda is 1/2 in exponential.
         waitTime = random.exponential(0.5,None)
-
-        #Now wait for the random amount of time to pass.
+        ]
         sleep(waitTime)
 
         #Start transmiting
